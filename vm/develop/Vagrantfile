@@ -3,10 +3,16 @@
 
 Vagrant.configure("2") do |config|
 
-  config.vm.box = "base"
-
+  # The "bento" boxes are recommended.
+  # https://www.vagrantup.com/docs/boxes.html#official-boxes
+  config.vm.box = "bento/ubuntu-16.04"
+  config.vm.box_version = "= 2.3.8" # Known good version
   config.vm.box_check_update = false
 
   config.vm.network "private_network", type: "dhcp"
+
+  # Disable default `/vagrant` shared folder.
+  # https://www.vagrantup.com/docs/synced-folders/basic_usage.html#disabling
+  config.vm.synced_folder ".", "/vagrant", disabled: true
 end
 
